@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografia Mobile Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes flash {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #fff; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subheadline {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .phone-mockup {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .phone {
+            width: 200px;
+            height: 350px;
+            background: #222;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.3s ease;
+        }
+
+        .phone:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .before { background: linear-gradient(45deg, #999, #666); }
+        .after { background: linear-gradient(45deg, #ff6b6b, #ffd93d); }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .problem-section {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+        }
+
+        .problem-section h2 {
+            color: white;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .pain-point {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .pain-point h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .benefit {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #ff8c42;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff8c42, #ffd700);
+        }
+
+        .benefit:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff8c42, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
+        }
+
+        /* Modules */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .module {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #ff8c42;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            opacity: 0.1;
+            border-radius: 0 0 0 50px;
+        }
+
+        .module-number {
+            background: linear-gradient(135deg, #ff8c42, #ffd700);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 140, 66, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+            color: white;
+        }
+
+        .testimonials h2 {
+            color: #2d3748;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .testimonial {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #2d3748;
+        }
+
+        .testimonial p {
+            color: #2d3748;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            color: #ffd93d;
+        }
+        
+        .testimonial-author strong {
+            color: #ffd93d;
+        }
+        
+        .testimonial-author small {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        /* CTA Buttons - Mudança para laranja mais conversivo */
+        .cta-button {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin: 20px 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 140, 66, 0.6);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+        }
+
+        .price {
+            font-size: 3rem;
+            color: #ffd700;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.5rem;
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: #f8f9fa;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .guarantee-badge {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 15px 30px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Counter */
+        .counter {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(247, 147, 30, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subheadline {
+                font-size: 1.2rem;
+            }
+            .phone {
+                width: 150px;
+                height: 250px;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Counter/Urgency Bar -->
+    <div class="counter" id="counter">
+        🔥 RESTAM APENAS <span id="spots" style="color: #ffd93d; font-size: 1.4em;">47 VAGAS</span> DESTA TURMA
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transforme Seu Celular na Ferramenta Profissional que Multiplica Suas Vendas Online</h1>
+                <p class="subheadline">Domine a única habilidade que separa empreendedores amadores de profissionais que faturam 6 dígitos: criar imagens irresistíveis que fazem seus produtos se venderem sozinhos, mesmo com equipamentos simples.</p>
+                
+                <div class="phone-mockup">
+                    <div class="phone">
+                        <div class="phone-screen before">ANTES<br>Foto Amadora</div>
+                    </div>
+                    <div class="phone">
+                        <div class="phone-screen after">DEPOIS<br>Foto Profissional</div>
+                    </div>
+                </div>
+                
+                <a href="#cta" class="cta-button">QUERO TRANSFORMAR MINHAS FOTOS AGORA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section problem-section">
+        <div class="container">
+            <h2>Por que 97% dos Empreendedores Digitais Perdem Vendas Todos os Dias</h2>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <h3>📱 Fotos Amadoras</h3>
+                    <p>Suas imagens parecem caseiras comparadas aos concorrentes, afastando clientes em potencial.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>💸 Vendas Perdidas</h3>
+                    <p>Clientes passam direto pelos seus posts sem parar para ver seus produtos incríveis.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>⏱️ Tempo Desperdiçado</h3>
+                    <p>Você gasta horas tentando editar e o resultado ainda decepciona.</p>
+                </div>
+                <div class="pain-point">
+                    <h3>💰 Preços Baixos</h3>
+                    <p>Se sente inseguro para precificar adequadamente por falta de autoridade visual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2>O que Você Realmente Vai Conquistar</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">📸</div>
+                    <h3>Fotos que Convertem em Vendas Reais</h3>
+                    <p>Aprenda as 7 técnicas que fazem clientes comprarem pelo impulso visual</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Método Mobile Profissional</h3>
+                    <p>Domine equipamentos acessíveis que superam câmeras caras quando bem usados</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Estratégia para Cada Rede Social</h3>
+                    <p>Instagram, WhatsApp Business, marketplaces - cada plataforma tem sua linguagem</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Edição Rápida e Profissional</h3>
+                    <p>Apps gratuitos + técnicas que economizam 80% do seu tempo</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">💎</div>
+                    <h3>Posicionamento Premium</h3>
+                    <p>Como suas fotos justificarão preços 300% maiores</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">👑</div>
+                    <h3>Autoridade Visual Instantânea</h3>
+                    <p>Clientes vão te reconhecer como referência no seu segmento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section class="section">
+        <div class="container">
+            <h2>Metodologia PMP - Profissional Mobile Photography</h2>
+            <div class="modules">
+                <div class="module">
+                    <div class="module-number">1</div>
+                    <h3>Fundamentos Mobile Profissional</h3>
+                    <ul>
+                        <li>Configurações avançadas para qualquer celular</li>
+                        <li>Equipamentos baratos que fazem diferença real</li>
+                        <li>Erros fatais que matam suas vendas</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="module-number">2</div>
+                    <h3>Técnicas de Composição Comercial</h3>
+                    <ul>
+                        <li>Regra dos terços aplicada às vendas</li>
+                        <li>Ângulos que despertam desejo</li>
+                        <li>Backgrounds que valorizam sem gastar nada</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="module-number">3</div>
+                    <h3>Domínio da Luz</h3>
+                    <ul>
+                        <li>Luz natural profissional</li>
+                        <li>Criando estúdio em casa com R$30</li>
+                        <li>Horários mágicos para cada tipo de produto</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="module-number">4</div>
+                    <h3>Edição Mobile Avançada</h3>
+                    <ul>
+                        <li>Apps profissionais gratuitos</li>
+                        <li>Workflow de edição em 3 minutos</li>
+                        <li>Presets exclusivos para vendas</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="module-number">5</div>
+                    <h3>Estratégia por Plataforma</h3>
+                    <ul>
+                        <li>Instagram: fotos que param o scroll</li>
+                        <li>WhatsApp Business: imagens que fecham vendas</li>
+                        <li>Marketplaces: fotos que destacam da concorrência</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="module-number">6</div>
+                    <h3>Monetização Total</h3>
+                    <ul>
+                        <li>Como precificar com autoridade visual</li>
+                        <li>Criando identidade visual coesa</li>
+                        <li>Escalando com produção em massa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2>Resultados Reais de Quem Aplicou</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p>"Em 15 dias minhas vendas triplicaram. As pessoas começaram a elogiar a qualidade das fotos e isso me deu confiança para aumentar os preços."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <strong>Marina Silva</strong><br>
+                            <small>Doceria Artesanal</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"Sempre achei que precisava de câmera profissional. Com as técnicas do curso, meu iPhone básico faz fotos melhores que muito fotógrafo por aí."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <strong>Carlos Eduardo</strong><br>
+                            <small>Produtos Fitness</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"R$180 em vendas por dia era meu limite. Depois do curso: R$800/dia apenas mudando como fotografo meus produtos."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <strong>Juliana Santos</strong><br>
+                            <small>Acessórios Femininos</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px; background: linear-gradient(135deg, #28a745, #20c997); padding: 30px; border-radius: 15px; color: white;">
+                <h3>+2.847 alunos já transformaram seus negócios</h3>
+                <p>97% aprovam e recomendam o método</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-badge">✓</div>
+            <h2>Garantia Incondicional de 7 Dias</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Experimente por 7 dias completos. Se não ficar satisfeito, devolvemos 100% do seu investimento. Sem perguntas. Sem burocracia.</p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <h2>Sua Transformação Começa Agora</h2>
+            <div class="price">
+                <span class="price-old">DE R$197</span><br>
+                POR APENAS <strong>3x de R$18,00</strong>
+            </div>
+            <p style="margin: 30px 0; font-size: 1.2rem;">Investimento menor que um almoço. Retorno de milhares de reais em vendas.</p>
+            
+            <a href="#" class="cta-button" style="font-size: 1.5rem; padding: 25px 50px;">QUERO ACESSO IMEDIATO</a>
+            
+            <div style="margin-top: 30px;">
+                <p>✓ Acesso imediato ao curso completo</p>
+                <p>✓ Bônus exclusivos inclusos</p>
+                <p>✓ Suporte direto no grupo VIP</p>
+                <p>✓ 7 dias de garantia total</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Counter with spots
+        let spotsLeft = 47;
+        
+        function updateSpots() {
+            // Reduce spots randomly every 2-5 minutes
+            if (Math.random() < 0.1) { // 10% chance every second
+                if (spotsLeft > 12) {
+                    spotsLeft--;
+                    document.getElementById('spots').textContent = spotsLeft;
+                    
+                    // Add flash effect
+                    const spotsEl = document.getElementById('spots');
+                    spotsEl.style.animation = 'flash 0.5s ease-in-out';
+                    setTimeout(() => spotsEl.style.animation = '', 500);
+                }
+            }
+        }
+        
+        setInterval(updateSpots, 1000);
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
